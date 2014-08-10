@@ -7,6 +7,9 @@ gem 'rails', '3.2.17'
 
 gem 'pg'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
+gem 'sassquatch'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -29,7 +32,7 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

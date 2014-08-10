@@ -1,0 +1,13 @@
+.body--footer {
+	position: relative;
+    padding: 1em 0 0 0;
+    @include clearfix();
+}
+
+@media only screen and (min-width: #{$smallTabletBreakpoint}) {
+    .footer--logo {
+        width: 75%;
+        margin: 0 auto 7% auto;
+        text-align: center;
+    }
+}
