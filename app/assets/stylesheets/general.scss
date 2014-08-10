@@ -1,0 +1,6 @@
+.wrapper {
+	max-width: 940px;
+	@include center-block();
+	overflow: hidden;
+}
+
