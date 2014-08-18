@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logan Vath</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="concerts">
+<div class="wrapper">
+    <nav id="nav">
+    <a href="/">
+        <div class="logan">
+            <h1>LOGAN VATH</h1>
+        </div>
+    </a>
+    <div class="header--right">
+        <div id="nav--links">
+            <ul>
+                <li><a href="/concerts">concerts</a></li>
+                <li><a href="/news">news</a></li>
+                <li><a href="/merch">merch</a></li>
+                <li id="contact"><a href="/contact">contact</a></li>
+            </ul>
+        </div>
+        <hr/>
+        <div class="player">
+            <div class="player--buttons">
+                <div class="previous">
+                    <%= image_tag("rewind.png", :alt => "previous") %>
+                </div>
+                <div class="play">
+                    <%= image_tag("play.png", :alt => "play") %>
+                </div>
+                <div class="next">
+                    <%= image_tag("forward.png", :alt => "next") %>
+                </div>
+            </div>
+            <div class="song--title">
+                <h6>“This Far From Home”</h6>
+            </div>
+            <div class="download--button">
+                <a href="http://loganvath.bandcamp.com/track/this-far-from-home?action=download" target="_blank"><%= image_tag("arrow-down.png", :alt => "download") %></a>
+            </div>
+        </div>
+    <div>
+    </nav>
+
+    <%= yield %>
+</div>
+</body>
+</html>

@@ -1,3 +1,83 @@
-#logan {
-  background: $siteRed;
+.logan {
+  background: $siteBlue;
+  float: left;
+  width: 37.5%;
+  padding: 1.7% 6.6%;
+}
+
+.header--right {
+  background:rgba(237, 244, 241, 0.8);
+  display: inline-block;
+  float: left;
+  padding: 0 5%;
+  width: 62.5%;
+}
+
+nav {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  @include clearfix();
+  margin-bottom: 2%;
+  position: fixed;
+}
+
+.body--hr {
+  margin: 3% 0;
+}
+
+hr {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0;
+  font-family: 'F Regular';
+  color: $siteBlue;
+  font-size: 2em;
+  margin-right: 7.5%;
+}
+
+#nav--links {
+  margin-top: 1.5%;
+  margin-bottom: .7%;
+}
+
+#contact {
+  margin-right: 0;
+}
+
+.player {
+  padding: 2.5% 0 2.3% 0
+}
+
+.previous, .play, .next {
+  display: inline-block;
+  width: 29%;
+  cursor: pointer;
+}
+
+.song--title {
+  display: inline-block;
+  margin: 0 3%;
+}
+
+.download--button {
+  display: inline-block;
+  width: 6%;
+  vertical-align: 11%;
+  cursor: pointer;
+}
+
+.player--buttons {
+  display: inline-block;
+  width: 18%;
+  cursor: default;
+  vertical-align: 11%;
 }

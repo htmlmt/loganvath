@@ -1,8 +1,26 @@
 @font-face {
 	font-family: 'Knockout';
-	src: font-url('Knockout/Knockout-featherweight.eot');
-	src: font-url('Knockout/Knockout-featherweight.eot?#iefix') format('embedded-opentype'),
-	font-url('Knockout/Knockout-featherweight.ttf') format('truetype');
+	src: font-url('Knockout.eot');
+	src: font-url('Knockout.eot?#iefix') format('embedded-opentype'),
+	font-url('Knockout.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'F Italic';
+	src: font-url('f-italic.eot');
+	src: font-url('f-italic.eot?#iefix') format('embedded-opentype'),
+	font-url('f-italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'F Regular';
+	src: font-url('f-regular.eot');
+	src: font-url('f-regular.eot?#iefix') format('embedded-opentype'),
+	font-url('f-regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }

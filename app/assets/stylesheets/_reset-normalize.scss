@@ -304,26 +304,23 @@ sub {
 
 /* LINKS */
 a {
-	color: $linkColor;
-	font-weight: $linkWeight;
+	color: $siteBlue;
 	text-decoration: none;
 	cursor: pointer;
 
 	&:hover {
-		color: $linkHover;
-		text-decoration: underline;
+		color: $siteBlue;
 		border: 0;
 		outline: 0;
 	}
 
 	&:visited {
-		color: $linkVisited;
-		color: $linkVisited;
+		color: $siteBlue;
 	}
 
 	&:focus,
 	&:active {
-		color: $linkFocus;
+		color: $siteBlue;
 		border: 0;
 		outline: 0;
 	}
@@ -354,11 +351,10 @@ strong a {
 /* ELEMENTS */
 hr {
 	display: block;
-	margin: 1em 0;
 	padding: 0;
-	height: 4px;
+	height: 3px;
 	border: 0;
-	background-color: $siteYellow;
+	background-color: $siteBlue;
 }
 
 img {

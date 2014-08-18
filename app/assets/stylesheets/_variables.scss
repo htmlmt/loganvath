@@ -1,7 +1,7 @@
 // ---- ---- ---- ---- VARIABLES ---- ---- ---- ----
 
 // Site Colors
-$siteBlue: #3D7092;
+$siteBlue: #384948;
 $siteDarkBlue: #0C4C70;
 $siteYellow: #D6CD70;
 $siteLightGrey: #cccccc;
@@ -25,14 +25,14 @@ $white: rgb(255,255,255); //#ffffff
 
 // Root
 $bodyColor: white;
-$textColor: white;
+$textColor: black;
 $columnMargin: .5em;
 $gutter: 1em;
 $warningColor: red;
 $textFontSize: 1em;
 
 // Typography
-$baseFont: 'Futura Book', sans-serif;
+$baseFont: 'F Regular', sans-serif;
 $baseFontSize: 100%;
 $baselineHeight: 1.35em;
 $baseFontWeight: 300;
@@ -40,7 +40,7 @@ $headingFont: $baseFont;
 $headingLineHeight: 1.1;
 
 $h1Color: $textColor;
-$h1Size: 8.69em;
+$h1Size: 4.4em;
 $h1FontWeight: 300;
 
 $h2Color: $textColor;

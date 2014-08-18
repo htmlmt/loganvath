@@ -1,6 +1,93 @@
 .wrapper {
-	max-width: 940px;
+	max-width: 960px;
 	@include center-block();
 	overflow: hidden;
 }
 
+.body--bar {
+  background: $siteBlue;
+  padding: .6% 6.7%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  margin-top: 8%;
+  width: 100%;
+}
+
+.body--bar h6 {
+  color: white;
+}
+
+.body--background h3 {
+  font-family: "Knockout";
+  color: $siteBlue;
+}
+
+.body--background {
+  background:rgba(237, 244, 241, 0.8);
+  overflow: hidden;
+  margin-top: 14.4%;
+  padding: 5% 6.7%;
+}
+
+.social--icon {
+  width: 5%;
+  display: inline-block;
+  margin-right: 1.5%;
+  vertical-align: 30%;
+}
+
+.social {
+  margin-bottom: 1.5%;
+}
+
+h3 {
+  display: inline-block;
+  margin: 0;
+}
+
+.home {
+  background: url('/assets/home-background_2x.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.concerts {
+  background: url('/assets/concerts-background_2x.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.news {
+  background: url('/assets/news-background_2x.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.merch {
+  background: url('/assets/merch-background_2x.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.contact {
+  background: url('/assets/contact-background_2x.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  height: 100%;
+}

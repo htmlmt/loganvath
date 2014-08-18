@@ -1,4 +1,19 @@
 h1 {
-  font-family: 'helvetica';
+  font-family: 'Knockout';
+  color: white;
+  margin-bottom: 0;
 }
 
+h3 a {
+  font-family: "Knockout";
+}
+
+a:hover {
+  opacity: .9;
+}
+
+h6 {
+  font-family: 'F Regular';
+  color: $siteBlue;
+  margin: 0;
+}
