@@ -85,6 +85,35 @@ function setupDom() {
 }
 
 $(document).ready(function(){
+    $("#concerts").click(function(){
+      $("body").removeClass();
+      $("body").addClass("concerts");
+    })
+    
+    $("#news").click(function(){
+      var body = document.body;
+      $("body").removeClass();
+      $("body").addClass("news");
+    })
+    
+    $("#merch").click(function(){
+      var body = document.body;
+      $("body").removeClass();
+      $("body").addClass("merch");
+    })
+    
+    $("#contact").click(function(){
+      var body = document.body;
+      $("body").removeClass();
+      $("body").addClass("contact");
+    })
+    
+    $(".logan").click(function(){
+      var body = document.body;
+      $("body").removeClass();
+      $("body").addClass("home");
+    })
+  
     $("#pause").hide();
     
     var trackOne = $("#track_one_audio")[0];

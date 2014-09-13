@@ -1,0 +1,7 @@
+<% @entries.each do |feed|%> 
+  <h4><a href="<%= sanitize strip_links(feed.url) %>" target="_blank"><%= feed.published.strftime("%B %e, %Y") %></a></h4>
+  <% summary = feed.summary %>
+  <% summary = summary.split("http")[0] %>
+  <p class="news--text"><%= sanitize strip_links(summary) %></p>
+  <p><a href="<%= sanitize strip_links(feed.url) %>" target="_blank">see full post</a></p>
+<%end%>
