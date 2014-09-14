@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
+  require 'nokogiri'
+  require 'open-uri'
+  require 'pry'
+  
   def home
     
   end
@@ -16,6 +20,7 @@ class PagesController < ApplicationController
   end
   
   def merch
+    @merch = Nokogiri::HTML(open('http://loganvath.bandcamp.com/merch'))
     render :layout => 'merch'
   end
   

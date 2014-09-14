@@ -1,0 +1,9 @@
+<section class="body--background">
+<% @merch.css('.leftMiddleColumns').each do |item| %>
+<% rel_url = item.get_attribute('href') %>
+<% link = "http://www.loganvath.bandcamp.com/" %>
+
+<% merch = item.inner_html %>
+<%= raw merch.gsub(/=('|")\//, '=\1*/').gsub(/\*\//, link.match(/(http|https):\/\/[\w.]+\//)[0]) %>  
+<% end %>
+</section>

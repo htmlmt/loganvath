@@ -1,51 +1,29 @@
-#alligator--tail, #crocodile--tail {
-  width: 41%;
-  position: absolute;
-  top: 40%;
+.body--background ol li {
+  width: 25%;
+  float: left;
 }
 
-#alligator--tail {
-  left: 0;
+.title {
+  font-family: "Knockout";
+  margin: 0;
 }
 
-#crocodile--tail {
-  right: 0;
+.merchtype {
+  font-size: .6em;
 }
 
-#tail--tape {
-  position: relative;
+.more-merch-link {
+  display: none;
 }
 
-#tail--section {
+.sold-out {
+  color: $siteRed;
+  font-size: .6em;
+}
+
+.body--background ol {
   width: 100%;
-}
-
-.tail--wrapper {
-  background: url('../img/gator-croc-background.png');
-  background-repeat: no-repeat;
-}
-
-#tail--heading {
-  margin: 0 auto;
-  width: 30%;
-  max-width: 295px;
-}
-
-#tail--heading h2 {
-  display: inline-block;
-  margin-bottom: 0;
-}
-
-#tail--heading h3 {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  display: inline-block;
-  margin: 0 3%;
-  vertical-align: 35%;
-}
-
-.content--header h5 {
-  color: $siteYellow;
+  @include clearfix();
 }
 
     .section--header {
@@ -71,80 +49,14 @@
             text-align: center;
         }
         
-@media only screen and (max-width: $smallTabletBreakpoint) {
-  #alligator--sign--mobile, #crocodile--sign--mobile {
-    background: url('../img/alligator-snout-background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  #alligator--sign--desktop, #crocodile--sign--desktop {
-    display: none;
-  }
-  
-  #mobile--blue {
-    background: $siteDarkBlue;
-  }
-  
-  #tail--section {
-    padding-top: 310%;
-    background-position: 50% 0;
-    background-size: 250%;
-    background-repeat: no-repeat;
-  }
-}
 
 @media only screen and (min-width: #{$smallTabletBreakpoint}) {
-  #alligator--sign--mobile, #crocodile--sign--mobile {
-    display: none;
-  }
-  
-  #alligator--sign--desktop, #crocodile--sign--desktop {
-    margin-bottom: 0;
-  }
-  
-  .panel--summary {
-    width: 90%;
-    margin: 2% auto 7% auto;
-  }
-  
-  #content--background {
-    width: 100%;
-    background: url('../img/content-background.png');
-    background-size: contain;
-    background-position: 50% 0;
-    background-repeat: 0 no-repeat;
-  }
-  
 	.body--main {
 		@include flexbox();
 		@include flexbox-justify-content(space-between);
 		@include flexbox-align-items(flex-start);
 		@include flexbox-flex-wrap(wrap);
 	}
-  
-  .tail--wrapper {
-    width: 100%;
-    background-size: 100%;
-  }
-  
-  #tail--section {
-    background-size: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .panels {
-    width: 49.7%;
-    display: inline-block;
-  }
-  
-  .panels--wrapper {
-    max-width: 1000px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
         .main--section {
             @include css3-calc('width', '100%/3 - .75em');
             padding: 10% 5% 0 5%;

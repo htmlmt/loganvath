@@ -11,6 +11,8 @@ gem 'feedjira'
 
 gem 'nokogiri'
 
+gem 'pry'
+
 gem 'dotenv-rails', :groups => [:development, :test]
 
 # Gems used only for assets and not required

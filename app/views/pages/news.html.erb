@@ -1,7 +1,11 @@
+<section class="body--background">
 <% @entries.each do |feed|%> 
   <h4><a href="<%= sanitize strip_links(feed.url) %>" target="_blank"><%= feed.published.strftime("%B %e, %Y") %></a></h4>
   <% summary = feed.summary %>
   <% summary = summary.split("http")[0] %>
   <p class="news--text"><%= sanitize strip_links(summary) %></p>
   <p><a href="<%= sanitize strip_links(feed.url) %>" target="_blank">see full post</a></p>
+  <hr class="body--hr"/>
 <%end%>
+<a href="http://facebook.com/loganvath" target="_blank"><em>See more of Logan's posts on his Facebook page.</em></a>
+</section>
