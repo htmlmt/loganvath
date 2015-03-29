@@ -1,0 +1,100 @@
+<section class="body--background">
+<h4 class="upcoming-concerts--header">upcoming concerts</h4>
+<div class="upcoming-concerts--content">
+<% @concerts.css('.profile_backpage_shows_row').each do |concert| %>
+    <% details_time = concert.css('.artist_shows_shows_details_time').text %>
+    <% details_array = details_time.split('|') %>
+    <% city = details_array.first.rstrip %>
+    <% time = details_array.last.lstrip %>
+    <% date = concert.css('.other-month').text %>
+    <% date.sub! 'Jan', 'January' %>
+    <% date.sub! 'Feb', 'February' %>
+    <% date.sub! 'Mar', 'March' %>
+    <% date.sub! 'Apr', 'April' %>
+    <% date.sub! 'May', 'May' %>
+    <% date.sub! 'Jun', 'June' %>
+    <% date.sub! 'Jul', 'July' %>
+    <% date.sub! 'Aug', 'August' %>
+    <% date.sub! 'Sep', 'September' %>
+    <% date.sub! 'Oct', 'October' %>
+    <% date.sub! 'Nov', 'November' %>
+    <% date.sub! 'Dec', 'December' %>
+    <% link = concert.css('.buttons_container').first %>
+    <% tickets_link = link.css('.standard_button').first.get_attribute('href') %>
+    <% rel_url = concert.css('.profile_backpage_shows_details_name').first.get_attribute('href') %>
+    <% rn_link = "https://www.reverbnation.com" %>
+    <% show_link = rn_link + rel_url %>
+    <% show_details = Nokogiri::HTML(open(show_link)) %>
+    <% if tickets_link == "javascript:;" %>
+    <% tickets_link = show_link %>
+    <% end %>
+    <%= link_to tickets_link, target: "_blank", class: "upcoming-concert" do |link| %>
+        <h3><%= date %> / <%= city %></h3>
+        <% name = concert.css('.profile_backpage_shows_details_name').text %>
+        <% other_bands = show_details.css('.name').text %>
+        <p><em><%= name %>
+            <% unless other_bands == "\n              Logan Vath Music\n            " %>
+                </em>|<em> with 
+                <% other_bands.sub! "\n            \n              Logan Vath Music", "" %>
+                <% other_bands.sub! "Logan Vath Music\n            \n", "" %>
+                <% other_bands.gsub! "\n            \n", " and" %>
+                <%= other_bands %>
+            <% end %></em>
+        </p>
+        <p>
+            starts at <%= time %>
+        </p>
+        <hr>
+    <% end %>
+<% end %>
+</div>
+<h4 class="past-concerts--header">past concerts</h4>
+<div class="past-concerts--content">
+<% @past_concerts.css('.profile_backpage_shows_row').each do |concert| %>
+    <% details_time = concert.css('.artist_shows_shows_details_time').text %>
+    <% details_array = details_time.split('|') %>
+    <% city = details_array.first.rstrip %>
+    <% time = details_array.last.lstrip %>
+    <% date = concert.css('.other-month').text %>
+    <% date.sub! 'Jan', 'January' %>
+    <% date.sub! 'Feb', 'February' %>
+    <% date.sub! 'Mar', 'March' %>
+    <% date.sub! 'Apr', 'April' %>
+    <% date.sub! 'May', 'May' %>
+    <% date.sub! 'Jun', 'June' %>
+    <% date.sub! 'Jul', 'July' %>
+    <% date.sub! 'Aug', 'August' %>
+    <% date.sub! 'Sep', 'September' %>
+    <% date.sub! 'Oct', 'October' %>
+    <% date.sub! 'Nov', 'November' %>
+    <% date.sub! 'Dec', 'December' %>
+    <% link = concert.css('.buttons_container').first %>
+    <% tickets_link = link.css('.standard_button').first.get_attribute('href') %>
+    <% rel_url = concert.css('.profile_backpage_shows_details_name').first.get_attribute('href') %>
+    <% rn_link = "https://www.reverbnation.com" %>
+    <% show_link = rn_link + rel_url %>
+    <% show_details = Nokogiri::HTML(open(show_link)) %>
+    <% if tickets_link == "javascript:;" %>
+    <% tickets_link = show_link %>
+    <% end %>
+    <%= link_to tickets_link, target: "_blank", class: "past-concert" do |link| %>
+        <h3><%= date %> / <%= city %></h3>
+        <% name = concert.css('.profile_backpage_shows_details_name').text %>
+        <% other_bands = show_details.css('.name').text %>
+        <p><em><%= name %>
+            <% unless other_bands == "\n              Logan Vath Music\n            " %>
+                </em>|<em> with 
+                <% other_bands.sub! "\n            \n              Logan Vath Music", "" %>
+                <% other_bands.sub! "Logan Vath Music\n            \n", "" %>
+                <% other_bands.gsub! "\n            \n", " and" %>
+                <%= other_bands %>
+            <% end %></em>
+        </p>
+        <p>
+            starts at <%= time %>
+        </p>
+        <hr>
+    <% end %>
+<% end %>
+</div>
+</section>

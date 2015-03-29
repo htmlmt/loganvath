@@ -8,6 +8,8 @@ class PagesController < ApplicationController
   end
   
   def concerts
+    @concerts = Nokogiri::HTML(open('https://www.reverbnation.com/artist/artist_shows/1345034'))
+    @past_concerts = Nokogiri::HTML(open('https://www.reverbnation.com/artist/artist_shows/1345034?class=prev&past=true'))
     render :layout => 'concerts'
   end
   

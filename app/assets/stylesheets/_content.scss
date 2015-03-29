@@ -21,6 +21,31 @@
   font-size: .6em;
 }
 
+.past-concerts {
+    margin-top: 15%;
+}
+
+.upcoming-concerts--content {
+    font-size: 1.5em;
+}
+
+.upcoming-concerts--content h3 {
+    font-size: 2.5em;
+    line-height: 1.4;
+}
+
+.upcoming-concert hr, .past-concert hr {
+    margin: 2% 0;
+}
+
+.past-concert:last-of-type hr {
+    display: none;
+}
+
+.past-concerts--header {
+    margin-top: 5%;
+}
+
 .body--background ol {
   width: 100%;
   @include clearfix();
