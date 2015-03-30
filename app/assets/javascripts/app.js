@@ -116,279 +116,85 @@ $(document).ready(function(){
   
     $("#pause").hide();
     
-    var trackOne = $("#track_one_audio")[0];
-    var trackTwo = $("#track_two_audio")[0];
-    var trackThree = $("#track_three_audio")[0];
-    var trackFour = $("#track_four_audio")[0];
-    var trackFive = $("#track_five_audio")[0];
-    var trackSix = $("#track_six_audio")[0];
-    var trackSeven = $("#track_seven_audio")[0];
-    var trackEight = $("#track_eight_audio")[0];
-  
-    $("#play").click(function(){
-      if ( $(".track_one_list").hasClass("playing_now") ) {
-        trackOne.play();
-      } else if ( $(".track_two_list").hasClass("playing_now") ) {
-        trackTwo.play();
-      } else if ( $(".track_three_list").hasClass("playing_now") ) {
-        trackThree.play();
-      } else if ( $(".track_four_list").hasClass("playing_now") ) {
-        trackFour.play();
-      } else if ( $(".track_five_list").hasClass("playing_now") ) {
-        trackFive.play();
-      } else if ( $(".track_six_list").hasClass("playing_now") ) {
-        trackSix.play();
-      } else if ( $(".track_seven_list").hasClass("playing_now") ) {
-        trackSeven.play();
-      } else if ( $(".track_eight_list").hasClass("playing_now") ) {
-        trackEight.play();
-      } else if ( $(".track_one_list").hasClass("view") ) {
-        $(".track_one_list").removeClass("view");
-        $(".track_one_list").addClass("playing_now");
-        trackOne.play();
-      } else if ( $(".track_two_list").hasClass("view")) {
-        $(".track_two_list").removeClass("view");
-        $(".track_two_list").addClass("playing_now");
-        trackTwo.play();
-      } else if ( $(".track_three_list").hasClass("view")) {
-        $(".track_three_list").removeClass("view");
-        $(".track_three_list").addClass("playing_now");
-        trackThree.play();
-      } else if ( $(".track_four_list").hasClass("view")) {
-        $(".track_four_list").removeClass("view");
-        $(".track_four_list").addClass("playing_now");
-        trackFour.play();
-      } else if ( $(".track_five_list").hasClass("view")) {
-        $(".track_five_list").removeClass("view");
-        $(".track_five_list").addClass("playing_now");
-        trackFive.play();
-      } else if ( $(".track_six_list").hasClass("view")) {
-        $(".track_six_list").removeClass("view");
-        $(".track_six_list").addClass("playing_now");
-        trackSix.play();
-      } else if ( $(".track_seven_list").hasClass("view")) {
-        $(".track_seven_list").removeClass("view");
-        $(".track_seven_list").addClass("playing_now");
-        trackSeven.play();
-      } else if ( $(".track_eight_list").hasClass("view")) {
-        $(".track_eight_list").removeClass("view");
-        $(".track_eight_list").addClass("playing_now");
-        trackEight.play();
-      };
-      $("#play").hide();
-      $("#pause").show();
+    var trackOne = document.getElementById('1');
+    trackOne.addClass('current-track');
+    var songTitleOne = document.getElementsByClassName('song--title-1')[0];
+    songTitleOne.style.display = "inline-block";
+    
+    $("#play").click(function() {
+        $("#pause").show();
+        $("#play").hide();
+        var track = document.getElementsByClassName('current-track')[0];
+        track.play();
     });
   
     $("#next").on("click", function(){
-      if ( $(".track_one_list").hasClass("playing_now") ) {
-        trackOne.pause();
-        trackOne.currentTime = 0;
-        $(".track_one_list").removeClass("playing_now");
-        $(".track_two_list").addClass("playing_now");
-        $("#song--title").text("\“Luxury Plot\”");
-        $("#play").hide();
-        $("#pause").show();
-        trackTwo.play();
-      } else if ( $(".track_two_list").hasClass("playing_now") ) {
-        trackTwo.pause();
-        trackTwo.currentTime = 0;
-        $(".track_two_list").removeClass("playing_now");
-        $(".track_three_list").addClass("playing_now");
-        $("#song--title").text("\“Better Man or Ghost\”");
-        $("#play").hide();
-        $("#pause").show();
-        trackThree.play();
-      } else if ( $(".track_three_list").hasClass("playing_now") ) {
-        trackThree.pause();
-        trackThree.currentTime = 0;
-        $(".track_three_list").removeClass("playing_now");
-        $(".track_four_list").addClass("playing_now");
-        $("#song--title").text("\“Forever Your Curse\”");
-        $("#play").hide();
-        $("#pause").show();
-        trackFour.play();
-      } else if ( $(".track_four_list").hasClass("playing_now") ) {
-        trackFour.pause();
-        trackFour.currentTime = 0;
-        $(".track_four_list").removeClass("playing_now");
-        $(".track_five_list").addClass("playing_now");
-        $("#song--title").text("\“The Sidewalk\”");
-        $("#play").hide();
-        $("#pause").show();
-        trackFive.play();
-      } else if ( $(".track_five_list").hasClass("playing_now") ) {
-        trackFive.pause();
-        trackFive.currentTime = 0;
-        $(".track_five_list").removeClass("playing_now");
-        $(".track_six_list").addClass("playing_now");
-        $("#song--title").text("\“Kentucky\”");
-        $("#play").hide();
-        $("#pause").show();
-        trackSix.play();
-      } else if ( $(".track_six_list").hasClass("playing_now") ) {
-        trackSix.pause();
-        trackSix.currentTime = 0;
-        $(".track_six_list").removeClass("playing_now");
-        $(".track_seven_list").addClass("playing_now");
-        $("#song--title").text("\“Top Shelf\”");
-        $("#play").hide();
-        $("#pause").show();
-        trackSeven.play();
-      } else if ( $(".track_seven_list").hasClass("playing_now") ) {
-        trackSeven.pause();
-        trackSeven.currentTime = 0;
-        $(".track_seven_list").removeClass("playing_now");
-        $(".track_eight_list").addClass("playing_now");
-        $("#song--title").text("\“This Far From Home\”");
-        $("#play").hide();
-        $("#pause").show();
-        trackEight.play();
-      } else if ( $(".track_eight_list").hasClass("playing_now") ) {
-        trackEight.pause();
-        trackEight.currentTime = 0;
-        $(".track_eight_list").removeClass("playing_now");
-        $(".track_one_list").addClass("playing_now");
-        $("#song--title").text("\“Still Be Me\”");
-        $("#play").hide();
-        $("#pause").show();
-        trackOne.play();
-      } else if ( $(".track_one_list").hasClass("view") ) {
-        $(".track_one_list").removeClass("view");
-        $(".track_two_list").addClass("view");
-        $("#song--title").text("\“Luxury Plot\”");
-      } else if ( $(".track_two_list").hasClass("view") ) {
-        $(".track_two_list").removeClass("view");
-        $(".track_three_list").addClass("view");
-        $("#song--title").text("\“Better Man or Ghost\”");
-      } else if ( $(".track_three_list").hasClass("view") ) {
-        $(".track_three_list").removeClass("view");
-        $(".track_four_list").addClass("view");
-        $("#song--title").text("\“Forever Your Curse\”");
-      } else if ( $(".track_four_list").hasClass("view") ) {
-        $(".track_four_list").removeClass("view");
-        $(".track_five_list").addClass("view");
-        $("#song--title").text("\“The Sidewalk\”");
-      } else if ( $(".track_five_list").hasClass("view") ) {
-        $(".track_five_list").removeClass("view");
-        $(".track_six_list").addClass("view");
-        $("#song--title").text("\“Kentucky\”");
-      } else if ( $(".track_six_list").hasClass("view") ) {
-        $(".track_six_list").removeClass("view");
-        $(".track_seven_list").addClass("view");
-        $("#song--title").text("\“Top Shelf\”");
-      } else if ( $(".track_seven_list").hasClass("view") ) {
-        $(".track_seven_list").removeClass("view");
-        $(".track_eight_list").addClass("view");
-        $("#song--title").text("\“This Far From Home\”");
-      } else if ( $(".track_eight_list").hasClass("view") ) {
-        $(".track_eight_list").removeClass("view");
-        $(".track_one_list").addClass("view");
-        $("#song--title").text("\“Still Be Me\”");
-      }
+        var currentTrack = document.getElementsByClassName('current-track')[0];
+        
+        if (currentTrack.nextSibling.nextSibling === null) {
+            var nextTrack = document.getElementsByClassName('track')[0];
+        } else {
+            var nextTrack = currentTrack.nextSibling.nextSibling;
+        }
+        
+        var currentTrackTitle = document.getElementsByClassName("song--title-" + currentTrack.getAttribute("id") + "")[0];
+        var nextTrackTitle = document.getElementsByClassName("song--title-" + nextTrack.getAttribute("id") + "")[0];
+        
+        if($('#play').is(':visible')) {
+            currentTrackTitle.style.display = "none";
+            nextTrackTitle.style.display = "inline-block";
+            currentTrack.removeClass('current-track');
+            nextTrack.addClass('current-track');
+        } else {
+            $("#pause").show();
+            $("#play").hide();
+            currentTrackTitle.style.display = "none";
+            nextTrackTitle.style.display = "inline-block";
+            currentTrack.pause();
+            currentTrack.currentTime = 0
+            nextTrack.play();
+            currentTrack.removeClass('current-track');
+            nextTrack.addClass('current-track');
+            nextTrack.play();
+        }
     });
   
     $("#previous").on("click", function(){
-      if ( $(".track_one_list").hasClass("playing_now") ) {
-        trackOne.pause();
-        trackOne.currentTime = 0;
-        $(".track_list").removeClass("playing_now");
-        $(".track_seven_list").addClass("playing_now");
-        trackSeven.play();
-      } else if ( $(".track_two_list").hasClass("playing_now") ) {
-        trackTwo.pause();
-        trackTwo.currentTime = 0;
-        $(".track_list").removeClass("playing_now");
-        $(".track_one_list").addClass("playing_now");
-        trackOne.play();
-      } else if ( $(".track_three_list").hasClass("playing_now") ) {
-        trackThree.pause();
-        trackThree.currentTime = 0;
-        $(".track_list").removeClass("playing_now");
-        $(".track_two_list").addClass("playing_now");
-        trackTwo.play();
-      } else if ( $(".track_four_list").hasClass("playing_now") ) {
-        trackFour.pause();
-        trackFour.currentTime = 0;
-        $(".track_list").removeClass("playing_now");
-        $(".track_three_list").addClass("playing_now");
-        trackThree.play();
-      } else if ( $(".track_five_list").hasClass("playing_now") ) {
-        trackFive.pause();
-        trackFive.currentTime = 0;
-        $(".track_list").removeClass("playing_now");
-        $(".track_four_list").addClass("playing_now");
-        trackFour.play();
-      } else if ( $(".track_six_list").hasClass("playing_now") ) {
-        trackSix.pause();
-        trackSix.currentTime = 0;
-        $(".track_list").removeClass("playing_now");
-        $(".track_five_list").addClass("playing_now");
-        trackFive.play();
-      } else if ( $(".track_seven_list").hasClass("playing_now") ) {
-        trackSeven.pause();
-        trackSeven.currentTime = 0;
-        $(".track_list").removeClass("playing_now");
-        $(".track_six_list").addClass("playing_now");
-        trackSix.play();
-      }  else {
-        trackEight.pause();
-        trackEight.currentTime = 0;
-        $(".track_list").removeClass("playing_now");
-        $(".track_seven_list").addClass("playing_now");
-        trackSeven.play();
-      }
-      $("#play").hide();
-      $("#pause").show();
+        var currentTrack = document.getElementsByClassName('current-track')[0];
+        
+        if (currentTrack.previousSibling.previousSibling.hasClass('wrapper') === true) {
+            var tracks = document.getElementsByClassName('track');
+            var previousTrack = tracks[tracks.length - 1];
+        } else {
+            var previousTrack = currentTrack.previousSibling.previousSibling;
+        }
+        
+        var currentTrackTitle = document.getElementsByClassName("song--title-" + currentTrack.getAttribute("id") + "")[0];
+        var previousTrackTitle = document.getElementsByClassName("song--title-" + previousTrack.getAttribute("id") + "")[0];
+        
+        if($('#play').is(':visible')) {
+            currentTrackTitle.style.display = "none";
+            previousTrackTitle.style.display = "inline-block";
+            currentTrack.removeClass('current-track');
+            previousTrack.addClass('current-track');
+        } else {
+            $("#pause").show();
+            $("#play").hide();
+            currentTrackTitle.style.display = "none";
+            previousTrackTitle.style.display = "inline-block";
+            currentTrack.pause();
+            currentTrack.currentTime = 0
+            previousTrack.play();
+            currentTrack.removeClass('current-track');
+            previousTrack.addClass('current-track');
+            previousTrack.play();
+        }
     });
   
     $("#pause").on("click", function(){
-      trackOne.pause();
-      trackTwo.pause();
-      trackThree.pause();
-      trackFour.pause();
-      trackFive.pause();
-      trackSix.pause();
-      trackSeven.pause();
-      trackEight.pause();
       $("#pause").hide();
       $("#play").show();
+      var track = document.getElementsByClassName('current-track')[0];
+      track.pause();
     });
-
-    $(trackOne).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    $(trackTwo).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    $(trackThree).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    $(trackFour).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    $(trackFive).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    $(trackSix).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    $(trackSeven).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    $(trackSeven).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    $(trackEight).on('ended', function() {
-       playing = false;
-       $("#next").click();
-    });
-    
 });

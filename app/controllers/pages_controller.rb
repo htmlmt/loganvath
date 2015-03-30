@@ -4,7 +4,15 @@ class PagesController < ApplicationController
   require 'pry'
   
   def home
-    
+    @client = Soundcloud.new(:client_id => ENV["CLIENT_ID"], :client_secret => ENV["CLIENT_SECRET"], :username => ENV["SOUNDCLOUD_USERNAME"], :password => ENV["SOUNDCLOUD_PASSWORD"])
+
+    playlist = @client.get('/resolve', :url => "https://soundcloud.com/michaeljamestodd/sets/logan-vath", :client_id => ENV["CLIENT_ID"])
+
+    @ids = []
+
+    playlist["tracks"].each do |track|
+      @ids.push track["id"]
+    end
   end
   
   def concerts
