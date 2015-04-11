@@ -8,93 +8,68 @@
   <link rel="icon" type="image/png" href="/images/favicon.png" sizes="32x32">
 </head>
 <body class="merch">
-  <!-- <audio id="track_one_audio" class="track_audio">
-    <source src="track_one.mp3"></source>
-    Your browser doesn't support audio. Try another one.
-  </audio>
-  <audio id="track_two_audio" class="track_audio">
-    <source src="track_two.mp3"></source>
-    Your browser doesn't support audio. Try another one.
-  </audio>
-  <audio id="track_three_audio" class="track_audio">
-    <source src="track_three.mp3"></source>
-    Your browser doesn't support audio. Try another one.
-  </audio>
-  <audio id="track_four_audio" class="track_audio">
-    <source src="track_four.mp3"></source>
-    Your browser doesn't support audio. Try another one.
-  </audio>
-  <audio id="track_five_audio" class="track_audio">
-    <source src="track_five.mp3"></source>
-    Your browser doesn't support audio. Try another one.
-  </audio>
-  <audio id="track_six_audio" class="track_audio">
-    <source src="track_six.mp3"></source>
-    Your browser doesn't support audio. Try another one.
-  </audio>
-  <audio id="track_seven_audio" class="track_audio">
-    <source src="track_seven.mp3"></source>
-    Your browser doesn't support audio. Try another one.
-  </audio>
-  <audio id="track_eight_audio" class="track_audio">
-    <source src="track_eight.mp3"></source>
-    Your browser doesn't support audio. Try another one.
-  </audio> -->
-
-<div class="track_list">
-    <div class="track_one_list view"></div>
-    <div class="track_two_list"></div>
-    <div class="track_three_list"></div>
-    <div class="track_four_list"></div>
-    <div class="track_five_list"></div>
-    <div class="track_six_list"></div>
-    <div class="track_seven_list"></div>
-    <div class="track_eight_list"></div>
-</div>
-
-<div class="wrapper">
-    <nav id="nav">
-    <a href="/">
-        <div class="logan">
-            <h1>LOGAN VATH</h1>
-        </div>
-    </a>
-    <div class="header--right">
-        <div id="nav--links">
-            <ul>
-                <li><a href="/concerts">concerts</a></li>
-                <li><a href="/news">news</a></li>
-                <li><a href="/merch">merch</a></li>
-                <li id="contact"><a href="/contact">contact</a></li>
-            </ul>
-        </div>
-        <hr/>
-        <div class="player">
-            <div class="player--buttons">
-                <div id="previous">
-                    <%= image_tag("rewind.png", :alt => "previous") %>
-                </div>
-                <div id="play">
-                    <%= image_tag("play.png", :alt => "play") %>
-                </div>
-                <div id="pause">
-                    <%= image_tag("pause.png", :alt => "pause") %>
-                </div>
-                <div id="next">
-                    <%= image_tag("forward.png", :alt => "next") %>
-                </div>
-            </div>
-            <div class="song--title">
-                <h6 id="song--title">“Still Be Me”</h6>
-            </div>
-            <div class="download--button">
-                <a href="http://loganvath.bandcamp.com/track/this-far-from-home?action=download" target="_blank"><%= image_tag("arrow-down.png", :alt => "download") %></a>
-            </div>
-        </div>
-    <div>
-    </nav>
-
-    <%= yield %>
-</div>
-</body>
-</html>
+  <div class="track_list">
+      <div class="track_one_list view"></div>
+      <div class="track_two_list"></div>
+      <div class="track_three_list"></div>
+      <div class="track_four_list"></div>
+      <div class="track_five_list"></div>
+      <div class="track_six_list"></div>
+      <div class="track_seven_list"></div>
+      <div class="track_eight_list"></div>
+  </div>
+  
+  <div class="wrapper">
+      <nav id="nav">
+      <a href="/">
+          <div class="logan">
+              <h1>LOGAN VATH</h1>
+          </div>
+      </a>
+      <div class="header--right">
+          <div id="nav--links">
+              <ul>
+                  <li id="concerts"><a href="/concerts">concerts</a></li>
+                  <li id="news"><a href="/news">news</a></li>
+                  <li id="merch"><a href="/merch">merch</a></li>
+                  <li id="contact"><a href="/contact">contact</a></li>
+              </ul>
+          </div>
+          <hr/>
+          <div class="player">
+              <div class="player--buttons">
+                  <div id="previous">
+                      <%= image_tag("rewind.png", :alt => "previous") %>
+                  </div>
+                  <div id="play">
+                      <%= image_tag("play.png", :alt => "play") %>
+                  </div>
+                  <div id="pause">
+                      <%= image_tag("pause.png", :alt => "pause") %>
+                  </div>
+                  <div id="next">
+                      <%= image_tag("forward.png", :alt => "next") %>
+                  </div>
+              </div>
+              <% @ids.each_with_index do |id, index| %>
+              <div class="song--title song--title-<%= index + 1 %>">
+                  <% track = JSON.parse(Curl.get("http://api.soundcloud.com/tracks/#{id}?client_id=#{ENV["CLIENT_ID"]}").body_str) %>
+                  <h6 id="song--title">“<%= track["title"] %>”</h6>
+              </div>
+              <% end %>
+          </div>
+      <div>
+      </nav>
+    
+      <%= yield %>
+  </div>
+  </body>
+      <% client = Soundcloud.new(:client_id => ENV["CLIENT_ID"], :client_secret => ENV["CLIENT_SECRET"], :username => ENV["SOUNDCLOUD_USERNAME"], :password => ENV["SOUNDCLOUD_PASSWORD"]) %>
+    <% @ids.each_with_index do |id, index| %>
+        <% track = JSON.parse(Curl.get("http://api.soundcloud.com/tracks/#{id}/stream?client_id=#{ENV["CLIENT_ID"]}").body_str) %>
+        <audio class="track" id="<%= index + 1 %>">
+          <source src="<%= track["location"] %>"></source>
+          Your browser doesn't support audio. Try another one.
+        </audio>
+    <% end %>
+  </html>

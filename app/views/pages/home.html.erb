@@ -1,0 +1,109 @@
+<section class="main--concerts">
+    <section class="body--background">
+        <h4 class="upcoming-concerts--header">upcoming concerts</h4>
+        <div class="upcoming-concerts--content">
+        <% if @upcoming_concerts.count == 0 %>
+            <p>No upcoming concerts scheduled.</p>
+        <% end %>
+        <% @upcoming_concerts.each do |concert| %>
+            <%= link_to concert["tickets_link"], target: "_blank", class: "upcoming-concert" do |link| %>
+                <h3><%= concert["date"] %> / <%= concert["city"] %></h3>
+                <p>
+                    <em><%= concert["name"] %></em>|<em> with <%= concert["other_bands"] %></em>
+                </p>
+                <p>
+                    starts at <%= concert["time"] %>
+                </p>
+                <hr>
+            <% end %>
+        <% end %>
+        </div>
+        <h4 class="past-concerts--header">past concerts</h4>
+        <div class="past-concerts--content">
+        <% @past_concerts.each do |concert| %>
+            <%= link_to concert["tickets_link"], target: "_blank", class: "past-concert" do |link| %>
+                <h3><%= concert["date"] %> / <%= concert["city"] %></h3>
+                <p>
+                    <em><%= concert["name"] %></em> | <em>with <%= concert["other_bands"] %></em>
+                </p>
+                <p>
+                    starts at <%= concert["time"] %>
+                </p>
+                <hr>
+            <% end %>
+        <% end %>
+        </div>
+    </section>
+</section>
+
+<div class="main--news">
+    <div class="body--background">
+    <% @entries.each do |feed|%> 
+        <h4><a href="<%= sanitize strip_links(feed.url) %>" target="_blank"><%= feed.published.strftime("%B %e, %Y") %></a></h4>
+        <% summary = feed.summary %>
+        <% summary = summary.split("http")[0] %>
+        <p class="news--text"><%= sanitize strip_links(summary) %></p>
+        <p><a href="<%= sanitize strip_links(feed.url) %>" target="_blank">see full post</a></p>
+        <hr class="body--hr"/>
+    <% end %>
+    <a href="http://facebook.com/loganvath" target="_blank"><em>See more of Logan's posts on his Facebook page.</em></a>
+    </div>
+</div>
+<section class="main--merch">
+    <section class="body--background">
+    <% @merch.css('.leftMiddleColumns').each do |item| %>
+    <% rel_url = item.get_attribute('href') %>
+    <% link = "http://www.loganvath.bandcamp.com/" %>
+
+    <% merch = item.inner_html %>
+    <%= raw merch.gsub(/=('|")\//, '=\1*/').gsub(/\*\//, link.match(/(http|https):\/\/[\w.]+\//)[0]) %>  
+    <% end %>
+    </section>
+</section>
+<section class="main--contact">
+    <section class="body--background">
+      <h3>Email Logan at <a href="mailto:loganrvath@gmail.com">loganrvath@gmail.com</a>.</h3>
+      <hr class="body--hr"/>
+      <div class="social">
+        <a href="http://facebook.com/loganvath" target="_blank">
+          <div class="social--icon">
+            <%= image_tag("facebook.png", :alt => "facebook") %>
+          </div>
+          <h3>facebook.com/loganvath</h3>
+        </a>
+      </div>
+      <div class="social">
+        <a href="http://twitter.com/loganvath" target="_blank">
+          <div class="social--icon">
+            <%= image_tag("twitter.png", :alt => "twitter") %>
+          </div>
+          <h3>@loganvath</h3>
+        </a>
+      </div>
+      <div class="social">
+        <a href="http://soundcloud.com/loganvath" target="_blank">
+          <div class="social--icon">
+            <%= image_tag("soundcloud.png", :alt => "soundcloud") %>
+          </div>
+          <h3>soundcloud.com/loganvath</h3>
+        </a>
+      </div>
+      <div class="social">
+        <a href="http://instagram.com/loganvath" target="_blank">
+          <div class="social--icon">
+            <%= image_tag("instagram.png", :alt => "instagram") %>
+          </div>
+          <h3>instagram.com/loganvath</h3>
+        </a>
+      </div>
+    </section>
+</section>
+
+<% client = Soundcloud.new(:client_id => ENV["CLIENT_ID"], :client_secret => ENV["CLIENT_SECRET"], :username => ENV["SOUNDCLOUD_USERNAME"], :password => ENV["SOUNDCLOUD_PASSWORD"]) %>
+<% @ids.each_with_index do |id, index| %>
+  <% track = JSON.parse(Curl.get("http://api.soundcloud.com/tracks/#{id}/stream?client_id=#{ENV["CLIENT_ID"]}").body_str) %>
+  <audio class="track" id="<%= index + 1 %>">
+    <source src="<%= track["location"] %>"></source>
+    Your browser doesn't support audio. Try another one.
+  </audio>
+<% end %>

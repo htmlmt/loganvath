@@ -1,0 +1,8 @@
+    <% client = Soundcloud.new(:client_id => ENV["CLIENT_ID"], :client_secret => ENV["CLIENT_SECRET"], :username => ENV["SOUNDCLOUD_USERNAME"], :password => ENV["SOUNDCLOUD_PASSWORD"]) %>
+  <% @ids.each_with_index do |id, index| %>
+      <% track = JSON.parse(Curl.get("http://api.soundcloud.com/tracks/#{id}/stream?client_id=#{ENV["CLIENT_ID"]}").body_str) %>
+      <audio class="track" id="<%= index + 1 %>">
+        <source src="<%= track["location"] %>"></source>
+        Your browser doesn't support audio. Try another one.
+      </audio>
+  <% end %>

@@ -1,6 +1,9 @@
 <section class="body--background">
 <h4 class="upcoming-concerts--header">upcoming concerts</h4>
 <div class="upcoming-concerts--content">
+<% if @concerts.count == 0 %>
+<p>No upcoming concerts scheduled.</p>
+<% end %>
 <% @concerts.css('.profile_backpage_shows_row').each do |concert| %>
     <% details_time = concert.css('.artist_shows_shows_details_time').text %>
     <% details_array = details_time.split('|') %>
