@@ -1,83 +1,156 @@
-.logan {
-  background: $siteBlue;
-  float: left;
-  width: 37.5%;
-  padding: 1.7% 6.6%;
+.body--header {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    @include box-shadow();
 }
 
-.header--right {
-  background:rgba(237, 244, 241, 0.8);
-  display: inline-block;
-  float: left;
-  padding: 0 5%;
-  width: 62.5%;
+.header--title {
+    background: $siteBlue;
+    width: 100%;
+    padding: 1.7% 6.6%;
+    position: relative;
+    z-index: 1000;
+    text-align: center;
 }
 
-nav {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  @include clearfix();
-  margin-bottom: 2%;
-  position: fixed;
+.header--title a:active, .header--title a:hover {
+    text-decoration: none;
+    color: white;
 }
 
-.body--hr {
-  margin: 3% 0;
+.header--nav-player {
+    background:rgba(237, 244, 241, 1);
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    transition-duration: .5s;
 }
 
-hr {
-  margin: 0;
+.container--player {
+    margin: 2% 0;
+    display: none;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
+.container--nav {
+    border-bottom: 1px solid $siteBlue;
 }
 
-li {
-  display: inline-block;
-  margin: 0;
-  font-family: 'F Regular';
-  color: $siteBlue;
-  font-size: 2em;
-  margin-right: 7.5%;
+.container--nav ul {
+    margin: 0;
+    padding: 0;
 }
 
-#nav--links {
-  margin-top: 1.5%;
-  margin-bottom: .7%;
+.container--nav ul li {
+    display: inline-block;
+    margin: 0;
+    font-family: 'F Regular';
+    color: $siteBlue;
+    margin-right: 7.5%;
+    font-size: 1.9em;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid $siteBlue;
 }
 
-#contact {
-  margin-right: 0;
-}
-
-.player {
-  padding: 2.5% 0 2.3% 0
+.container--nav ul li:nth-of-type(last) {
+    margin-right: 0;
 }
 
 #previous, #play, #pause, #next {
-  display: inline-block;
-  width: 29%;
-  cursor: pointer;
+    display: inline-block;
+    width: 29%;
+    cursor: pointer;
 }
 
 .song--title {
-  display: inline-block;
-  margin: 0 3%;
-}
-
-.download--button {
-  display: inline-block;
-  width: 6%;
-  vertical-align: 11%;
-  cursor: pointer;
+    display: inline-block;
+    margin: 0 3%;
 }
 
 .player--buttons {
-  display: inline-block;
-  width: 18%;
-  cursor: default;
-  vertical-align: middle;
+    display: inline-block;
+    width: 18%;
+    cursor: default;
+    vertical-align: middle;
+}
+
+.nav-player--toggle {
+    text-align: center;
+    color: white;
+    background: $siteDarkRed;
+    @include box-shadow();
+    padding: .5rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: $smallTabletBreakpoint) {
+    .nav-player--toggle {
+        display: none;
+    }
+    
+    .container--nav ul li {
+        width: auto;
+        border-top: none;
+    }
+    
+    .header--nav-player {
+        @include transform-translate(0, 0);
+    }
+    
+    .container--player {
+        display: block;
+    }
+    
+    .container--nav ul li {
+        font-size: 1.4em;
+        text-align: left;
+    }
+    
+    .nav-player--container {
+        padding: 0 5%;
+    }
+    
+    .header--nav-player {
+        padding: 0 5%;
+    }
+}
+
+@media only screen and (min-width: 690px) {
+    .container--nav ul li {
+        font-size: 1.6em;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .body--header {
+        @include flexbox();
+        @include flexbox-align-items(stretch);
+        @include flexbox-justify-content(center);
+    }
+    
+    .header--title {
+        width: 37.5%;
+        text-align: left;
+    }
+
+    .header--nav-player {
+        width: 62.5%;
+    }
+    
+    .nav-player--container {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        @include transform-translate(0, -50%);
+    }
+    
+    .container--nav ul li {
+      font-size: 2em;
+    }
 }

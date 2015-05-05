@@ -13,10 +13,14 @@ class PagesController < ApplicationController
     getConcerts(past)
     @past_concerts = @concerts
     
+    @past_concerts = @past_concerts[0 .. 5]
+    
     urls = %w[https://www.facebook.com/feeds/page.php?format=rss20&id=197251703626320]
     feeds = Feedjira::Feed.fetch_and_parse urls
     feed = feeds['https://www.facebook.com/feeds/page.php?format=rss20&id=197251703626320']
     @entries = feed.entries
+    
+    @entries = @entries[0 .. 5]
     
     @merch = Nokogiri::HTML(open('http://loganvath.bandcamp.com/merch'))
     

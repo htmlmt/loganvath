@@ -6,6 +6,7 @@ $siteDarkBlue: #0C4C70;
 $siteYellow: #D6CD70;
 $siteLightGrey: #cccccc;
 $siteRed: #6f060f;
+$siteDarkRed: #802a25;
 
 $largeMobileBreakpoint: 29.5em; 	// <472px
 $smallTabletBreakpoint: 36.5em; 	// <592px
@@ -68,9 +69,9 @@ $codeFont: 'Source Code Pro', monospace;
 
 // Links
 $linkColor: $siteBlue;
-$linkHover: darken($linkColor,5%);
-$linkVisited: darken($linkColor,10%);
-$linkFocus: darken($linkColor,15%);
+$linkHover: $siteRed;
+$linkVisited: $siteBlue;
+$linkFocus: $siteBlue;
 $linkWeight: bold;
 
 // Forms

@@ -1,0 +1,51 @@
+.body--background ol {
+    margin: 0;
+    padding: 0;
+}
+
+.body--background ol li {
+    list-style-type: none;
+}
+
+.title {
+    font-family: "Knockout";
+    font-size: 2rem;
+    line-height: 1.1;
+    margin: 1rem 0;
+}
+
+.merchtype {
+    font-size: 1rem;
+}
+
+.more-merch-link {
+     display: none;
+}
+
+.sold-out {
+    color: $siteRed;
+    font-size: 1rem;
+}
+
+.art img {
+    border-radius: 25px;
+}
+
+.body--background {
+    margin-top: 5%;
+}
+
+@media only screen and (min-width: $smallTabletBreakpoint) {
+    .body--background ol {
+        @include flexbox();
+        @include flexbox-align-items(stretch);
+        @include flexbox-justify-content(flex-start);
+        @include flexbox-flex-wrap(wrap);
+    }
+
+    .body--background ol li {
+        width: 30%;
+        margin-right: 3%;
+        list-style-type: none;
+    }
+}

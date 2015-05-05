@@ -1,14 +1,5 @@
 'use strict';
 
-/*
- *  Scroll-triggered animations: http://joshbroton.com/hooking-up-to-the-window-onscroll-event-without-killing-your-performance/
- */
-
-/*
- *  These and other non-jquery functions at https://github.com/joshbroton/you-dont-need-jquery/blob/master/demo/js/not-jquery.js
- *  Let's not use jQuery if at all possible. Thanks!
- */
-
 Element.prototype.listen = function(event, callback) {
     if(this.attachEvent) {
         this.attachEvent("on" + event, function() {callback.call(this);});
@@ -48,70 +39,79 @@ Element.prototype.toggleClass = function(className) {
     }
 }
 
-function getById(id) {
-    return document.getElementById(id);
-}
-
-function responsiveElements() {
-    if(Modernizr.mq('(max-width: 1280px) and (min-width: 584px)')) {
-        var windowWidth = window.innerWidth;
-        var fontSize = windowWidth/80.1;
-        var html = document.querySelector("html");
-        html.style.fontSize = '' + fontSize + 'px';
-    } else if(Modernizr.mq('(max-width: 584px)')) {
-        var windowWidth = window.innerWidth;
-        var fontSize = windowWidth/80.1;
-        var html = document.querySelector("html");
-        html.style.fontSize = '' + fontSize + 'px';
+$(window).resize(function(){
+    $(".main--fold").css("height", $(window).height() * 1.2);
+    if (Modernizr.mq('(max-width: 584px)')) {
+        $(".header--nav-player").css("margin-top", "-" + $(".header--nav-player").height() * .85 + "px");
+        $(".nav-player--toggle").text("▼");
+        navOpen = false;
     } else {
-        var fontSize = 16
-        var html = document.querySelector("html");
-        html.style.fontSize = '' + fontSize + 'px';
-        var windowWidth = window.innerWidth;
+        $(".header--nav-player").css("margin-top", "0px");
+        $(".nav-player--toggle").text("▲");
+        navOpen = true;
     }
-}
+});
 
-var resize;
-window.onresize = function(){
-    clearTimeout(resize);
-    resize = setTimeout(responsiveElements(), 100);
-};
-
-window.onload = setupDom;
-window.onfocus = setupDom;
-
-function setupDom() {
-    responsiveElements();
-}
+$(document).on("page:load", function(){
+    $(".main--fold").css("height", $(window).height() * 1.2);
+    $(".header--nav-player").css("margin-top", "-" + $(".header--nav-player").height() * .85 + "px");
+});
 
 $(document).ready(function(){
+    if (Modernizr.mq('(max-width: 584px)')) {
+        $(".header--nav-player").css("margin-top", "-" + $(".header--nav-player").height() * .85 + "px");
+    }
+    
+    var navOpen = false;
+    
+    $(".nav-player--toggle").click(function(){
+        if (navOpen == true) {
+            $(".header--nav-player").css("margin-top", "-" + $(".header--nav-player").height() * .85 + "px");
+            $(".nav-player--toggle").text("▼");
+            navOpen = false;
+        } else {
+            $(".header--nav-player").css("margin-top", "0px");
+            $(".nav-player--toggle").text("▲");
+            navOpen = true;
+        }
+    });
+    
+    $(".main--fold").css("height", $(window).height());
+    
+    setTimeout(function(){
+        $(".main--fold").css("height", $(window).height() - ($(window).height() * .15));
+    }, 2000);
+    
     $("#concerts").click(function(){
-      $("body").removeClass();
-      $("body").addClass("concerts");
+        $('html, body').animate({
+            scrollTop: $(".main--concerts").offset().top - $('.body--header').height()
+        }, 750);
     })
     
     $("#news").click(function(){
-      var body = document.body;
-      $("body").removeClass();
-      $("body").addClass("news");
+        $('html, body').animate({
+            scrollTop: $(".main--news").offset().top - $('.body--header').height()
+        }, 750);
     })
     
     $("#merch").click(function(){
-      var body = document.body;
-      $("body").removeClass();
-      $("body").addClass("merch");
+        $('html, body').animate({
+            scrollTop: $(".main--merch").offset().top - $('.body--header').height()
+        }, 750);
     })
     
     $("#contact").click(function(){
-      var body = document.body;
-      $("body").removeClass();
-      $("body").addClass("contact");
+        $('html, body').animate({
+            scrollTop: $(".main--contact").offset().top - $('.body--header').height()
+        }, 750);
     })
     
-    $(".logan").click(function(){
-      var body = document.body;
-      $("body").removeClass();
-      $("body").addClass("home");
+    $(".header--title").click(function(){
+        $(".nav--link").css("font-weight", "normal");
+        $(".nav--link").css("color", "#384948");
+        $('html, body').animate({
+            scrollTop: 0
+        }, 750);
     })
   
     $("#pause").hide();
@@ -137,10 +137,14 @@ $(document).ready(function(){
             var nextTrack = currentTrack.nextSibling.nextSibling;
         }
         
+        console.log(currentTrack);
+        
         var currentTrackTitle = document.getElementsByClassName("song--title-" + currentTrack.getAttribute("id") + "")[0];
         var nextTrackTitle = document.getElementsByClassName("song--title-" + nextTrack.getAttribute("id") + "")[0];
         
         if($('#play').is(':visible')) {
+            currentTrack.pause();
+            currentTrack.currentTime = 0
             currentTrackTitle.style.display = "none";
             nextTrackTitle.style.display = "inline-block";
             currentTrack.removeClass('current-track');
@@ -151,8 +155,7 @@ $(document).ready(function(){
             currentTrackTitle.style.display = "none";
             nextTrackTitle.style.display = "inline-block";
             currentTrack.pause();
-            currentTrack.currentTime = 0
-            nextTrack.play();
+            currentTrack.currentTime = 0;
             currentTrack.removeClass('current-track');
             nextTrack.addClass('current-track');
             nextTrack.play();
@@ -173,6 +176,8 @@ $(document).ready(function(){
         var previousTrackTitle = document.getElementsByClassName("song--title-" + previousTrack.getAttribute("id") + "")[0];
         
         if($('#play').is(':visible')) {
+            currentTrack.pause();
+            currentTrack.currentTime = 0;
             currentTrackTitle.style.display = "none";
             previousTrackTitle.style.display = "inline-block";
             currentTrack.removeClass('current-track');

@@ -1,26 +1,3 @@
-.body--background ol li {
-  width: 25%;
-  float: left;
-}
-
-.title {
-  font-family: "Knockout";
-  margin: 0;
-}
-
-.merchtype {
-  font-size: .6em;
-}
-
-.more-merch-link {
-  display: none;
-}
-
-.sold-out {
-  color: $siteRed;
-  font-size: .6em;
-}
-
 .past-concerts {
     margin-top: 15%;
 }
@@ -30,7 +7,7 @@
 }
 
 .upcoming-concerts--content h3 {
-    font-size: 2.5em;
+    font-size: 2.5rem;
     line-height: 1.4;
 }
 
@@ -63,29 +40,28 @@
     overflow: hidden;
 }
 
-    .section--header {
-        margin-bottom: 1rem;
-        text-align: center;
+.section--header {
+    margin-bottom: 1rem;
+    text-align: center;
 
-        h1 {
-            margin-bottom: 0;
-        }
+    h1 {
+        margin-bottom: 0;
     }
-    
-    .content--graphic {
-      margin: 0 auto;
-    }
+}
 
-    .section--content {
-        margin-bottom: 3em;
-        text-align: center;
-        position: relative;
-    }
+.content--graphic {
+  margin: 0 auto;
+}
 
-        .section--graphic {
-            text-align: center;
-        }
-        
+.section--content {
+    margin-bottom: 3em;
+    text-align: center;
+    position: relative;
+}
+
+.section--graphic {
+    text-align: center;
+}    
 
 @media only screen and (min-width: #{$smallTabletBreakpoint}) {
 	.body--main {
@@ -94,28 +70,29 @@
 		@include flexbox-align-items(flex-start);
 		@include flexbox-flex-wrap(wrap);
 	}
-        .main--section {
-            @include css3-calc('width', '100%/3 - .75em');
-            padding: 10% 5% 0 5%;
-            display: inline-block;
-        }
-        
-        .section--half {
-            width: 50%;
-        }
-        
-        .section--content--half {
-            width: 100%;
-            padding: 0% 3%;
-        }
+    
+    .main--section {
+        @include css3-calc('width', '100%/3 - .75em');
+        padding: 10% 5% 0 5%;
+        display: inline-block;
+    }
+    
+    .section--half {
+        width: 50%;
+    }
+    
+    .section--content--half {
+        width: 100%;
+        padding: 0% 3%;
+    }
 
-        .main--section_full {
-            width: 100%;
-        }
+    .main--section_full {
+        width: 100%;
+    }
 
-            .section--content {
-                padding: 0;
-            }
+    .section--content {
+        padding: 0;
+    }
 
     // Use both .no-flexbox.no-flexboxlegacy if you're not using flexbox-wrap, because all flexbox mixins except flexbox-wrap() work in all flexboxlegacy browsers.
 	// In 3 months, all supported versions of browsers will support flexbox-wrap
@@ -126,5 +103,4 @@
 			@include clearfix();
 		}
 	}
-
 }

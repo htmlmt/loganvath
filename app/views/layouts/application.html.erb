@@ -5,66 +5,93 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <link rel="icon" type="image/png" href="/images/favicon.png" sizes="32x32">
+
+  <meta charset="utf-8">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Simple music from simple people." />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  <!-- SOCIAL METADATA -->
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Logan Vath"/>
+  <meta property="og:description" content="Simple music from simple people."/>
+  <meta property="og:url" content="http://loganvath.com"/>
+  <meta property="og:image" content=""/>
+  <meta property='og:site_name' content="Logan Vath"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@loganvath">
+  <meta name="twitter:title" content="Logan Vath">
+  <meta name="twitter:description" content="Simple music from simple people.">
+  <meta name="twitter:image" content="">
+  
+  <!-- ICONS -->
+  <link href="/images/favicon.png" rel="shortcut icon">
 </head>
 <body class="home">
-
-<div class="track_list">
-    <div class="track_one_list view"></div>
-    <div class="track_two_list"></div>
-    <div class="track_three_list"></div>
-    <div class="track_four_list"></div>
-    <div class="track_five_list"></div>
-    <div class="track_six_list"></div>
-    <div class="track_seven_list"></div>
-    <div class="track_eight_list"></div>
-</div>
-  
-<div class="wrapper">
-    <nav id="nav">
-    <a href="/">
-        <div class="logan">
-            <h1>LOGAN VATH</h1>
-        </div>
-    </a>
-    <div class="header--right">
-        <div id="nav--links">
-            <ul>
-                <li id="concerts"><a href="/concerts">concerts</a></li>
-                <li id="news"><a href="/news">news</a></li>
-                <li id="merch"><a href="/merch">merch</a></li>
-                <li id="contact"><a href="/contact">contact</a></li>
-            </ul>
-        </div>
-        <hr/>
-        <div class="player">
-            <div class="player--buttons">
-                <div id="previous">
-                    <%= image_tag("rewind.png", :alt => "previous") %>
-                </div>
-                <div id="play">
-                    <%= image_tag("play.png", :alt => "play") %>
-                </div>
-                <div id="pause">
-                    <%= image_tag("pause.png", :alt => "pause") %>
-                </div>
-                <div id="next">
-                    <%= image_tag("forward.png", :alt => "next") %>
+    <div class="main--background">
+    </div>
+    
+    <div class="wrapper">
+        <header class="body--header">
+            <div class="header--title">
+                <a href="/"><h1>LOGAN VATH</h1></a>
+            </div>
+            <div class="header--nav-player">
+                <div class="nav-player--container">
+                    <nav class="container--nav">
+                        <ul>
+                            <li class="nav--link" id="concerts">concerts</li>
+                            <li class="nav--link" id="news">news</li>
+                            <li class="nav--link" id="merch">merch</li>
+                            <li class="nav--link" id="contact">contact</li>
+                        </ul>
+                        <div class="nav-player--toggle">
+                            ▼
+                        </div>
+                    </nav>
+                    <div class="container--player">
+                        <div class="player--buttons">
+                            <div id="previous">
+                                <%= image_tag("rewind.png", :alt => "previous") %>
+                            </div>
+                            <div id="play">
+                                <%= image_tag("play.png", :alt => "play") %>
+                            </div>
+                            <div id="pause">
+                                <%= image_tag("pause.png", :alt => "pause") %>
+                            </div>
+                            <div id="next">
+                                <%= image_tag("forward.png", :alt => "next") %>
+                            </div>
+                        </div>
+                        <% if @ids %>
+                            <% @ids.each_with_index do |id, index| %>
+                            <div class="song--title song--title-<%= index + 1 %>">
+                                <% track = JSON.parse(Curl.get("http://api.soundcloud.com/tracks/#{id}?client_id=#{ENV["CLIENT_ID"]}").body_str) %>
+                                <h6 id="song--title">“<%= track["title"] %>”</h6>
+                            </div>
+                            <% end %>
+                        <% end %>
+                    </div>
                 </div>
             </div>
-            <% if @ids %>
-                <% @ids.each_with_index do |id, index| %>
-                <div class="song--title song--title-<%= index + 1 %>">
-                    <% track = JSON.parse(Curl.get("http://api.soundcloud.com/tracks/#{id}?client_id=#{ENV["CLIENT_ID"]}").body_str) %>
-                    <h6 id="song--title">“<%= track["title"] %>”</h6>
-                </div>
-                <% end %>
-            <% end %>
-        </div>
-    <div>
-    </nav>
+        </header>
+        
+        <%= yield %>
+        
+    </div>
     
-    <%= yield %>
-</div>
+    <% client = Soundcloud.new(:client_id => ENV["CLIENT_ID"], :client_secret => ENV["CLIENT_SECRET"], :username => ENV["SOUNDCLOUD_USERNAME"], :password => ENV["SOUNDCLOUD_PASSWORD"]) %>
+    <% @ids.each_with_index do |id, index| %>
+      <% track = JSON.parse(Curl.get("http://api.soundcloud.com/tracks/#{id}/stream?client_id=#{ENV["CLIENT_ID"]}").body_str) %>
+      <audio class="track" id="<%= index + 1 %>">
+        <source src="<%= track["location"] %>"></source>
+        Your browser doesn't support audio. Try another one.
+      </audio>
+    <% end %>
+    
 </body>
 </html>

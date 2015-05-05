@@ -1,0 +1,58 @@
+.upcoming-concerts--content h3 {
+    width: 100%;
+}
+
+.upcoming--content p, .past--content p {
+    margin-top: 30px;
+    font-size: 1.2rem;
+}
+
+.upcoming--content .past-concert, .past--content .past-concert {
+    border-radius: 0 0 25px 25px;
+    @include box-shadow();
+    background-color: $siteBlue;
+    margin-bottom: 5%;
+    padding: 3%;
+    position: relative;
+    z-index: 0;
+    display: block;
+}
+
+.content--concert h4 {
+    font-family: 'Knockout';
+    text-transform: uppercase;
+    color: white;
+}
+
+.content--concert p {
+    color: white;
+}
+
+.past-concert {
+    transition-duration: .3s;
+    text-decoration: none;
+}
+
+.past-concert:hover {
+    text-decoration: none;
+    color: white;
+    opacity: .9;
+}
+
+.past--header, .upcoming--header {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+@media only screen and (min-width: 700px) {
+    .upcoming--content, .past--content {
+        @include flexbox();
+        @include flexbox-align-items(stretch);
+        @include flexbox-justify-content(space-between);
+        @include flexbox-flex-wrap(wrap);
+    }
+
+    .upcoming--content .past-concert, .past--content .past-concert {
+        width: 30%;
+    }
+}

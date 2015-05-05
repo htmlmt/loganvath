@@ -1,0 +1,21 @@
+.main--contact {
+    margin-bottom: 5rem;
+}
+
+.contact--social {
+    @include flexbox();
+    @include flexbox-align-items(center);
+    @include flexbox-justify-content(center);
+    max-width: 300px;
+}
+
+.social--icon {
+    width: 60%;
+    display: inline-block;
+    margin-right: 1.5%;
+    vertical-align: 30%;
+}
+
+.social {
+    margin-bottom: 1.5%;
+}

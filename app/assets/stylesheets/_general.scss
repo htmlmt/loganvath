@@ -2,17 +2,55 @@
 	max-width: 960px;
 	@include center-block();
 	overflow: hidden;
+    position: relative;
+    z-index: 100;
+}
+
+main {
+    background:rgba(237, 244, 241, 0.875);
+    overflow: hidden;
+    padding: 5% 6.7%;
+    border-top: 1px solid $siteBlue;
+}
+
+main:nth-of-type(1) {
+    border: none;
+}
+
+main header h1 {
+    color: $siteBlue;
+}
+
+.main--background {
+    background-image: url("/assets/home-background_2x.jpg");
+    background-size: 1600px;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.section h1 {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(56, 73, 72, .5);
+    font-size: 2.75rem;
 }
 
 .body--bar {
-  background: $siteBlue;
-  padding: .6% 6.7%;
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  position: fixed;
-  margin-top: 8%;
-  width: 100%;
+    background: $siteBlue;
+    padding: .6% 6.7%;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    margin-top: 8%;
+    width: 100%;
 }
 
 .body--bar h6 {
@@ -20,76 +58,33 @@
 }
 
 .body--background h3 {
-  font-family: "Knockout";
-  color: $siteBlue;
-}
-
-.body--background {
-  background:rgba(237, 244, 241, 0.8);
-  overflow: hidden;
-  margin-top: 14.4%;
-  padding: 5% 6.7%;
-}
-
-.social--icon {
-  width: 5%;
-  display: inline-block;
-  margin-right: 1.5%;
-  vertical-align: 30%;
-}
-
-.social {
-  margin-bottom: 1.5%;
+    font-family: "Knockout";
+    color: $siteBlue;
 }
 
 h3 {
-  display: inline-block;
-  margin: 0;
-}
-
-.home {
-  background: url('/assets/home-background_2x.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-attachment: fixed;
-  height: 100%;
-}
-
-.concerts {
-  background: url('/assets/concerts-background_2x.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-attachment: fixed;
-}
-
-.news {
-  background: url('/assets/news-background_2x.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-attachment: fixed;
-}
-
-.merch {
-  background: url('/assets/merch-background_2x.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-attachment: fixed;
-  height: 100%;
-}
-
-.contact {
-  background: url('/assets/contact-background_2x.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-attachment: fixed;
-  height: 100%;
+    display: inline-block;
 }
 
 .news--text img, .news--text br {
-  display: none;
+    display: none;
+}
+
+a, a:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+a:hover {
+    color: $siteRed;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+@media only screen and (min-width: $smallTabletBreakpoint) {
+    .main--background {
+        background-size: cover;
+    }
 }
