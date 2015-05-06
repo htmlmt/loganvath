@@ -6,6 +6,10 @@
     z-index: 100;
 }
 
+.main--fold {
+    transition-duration: 1s;
+}
+
 main {
     background:rgba(237, 244, 241, 0.875);
     overflow: hidden;
